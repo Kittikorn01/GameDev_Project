@@ -1,13 +1,14 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] private PlayerData playerData;
-    [SerializeField] private bool isGrounded = false;
+    private bool isGrounded = false;
+    public event Action OnPlayerDied;
 
     private Rigidbody2D rb;
-    private float horizontalInput;
     private PlayerInputActions inputActions;
     private Vector2 moveInput;
     void Awake()
@@ -20,17 +21,19 @@ public class PlayerController : MonoBehaviour
     {
         inputActions.Player.Enable();
         inputActions.Player.Jump.performed += OnJump;
+        inputActions.Player.Kill.performed += PlayerDied;
     }
 
     void OnDisable()
     {
         inputActions.Player.Jump.performed -= OnJump;
+        inputActions.Player.Kill.performed -= PlayerDied;
         inputActions.Player.Disable();
 
     }
     void Update()
     {
-        moveInput = inputActions.Player.Move.ReadValue<Vector2>();
+        moveInput = inputActions.Player.Move.ReadValue<Vector2>();    
     }
 
     void FixedUpdate()
@@ -63,5 +66,10 @@ public class PlayerController : MonoBehaviour
         {
             isGrounded = false;
         }
+    }
+
+    void PlayerDied(InputAction.CallbackContext context)
+    {
+        OnPlayerDied?.Invoke();
     }
 }
