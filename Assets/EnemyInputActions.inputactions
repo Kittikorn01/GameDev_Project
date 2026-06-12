@@ -1,0 +1,35 @@
+{
+    "version": 1,
+    "name": "EnemyInputActions",
+    "maps": [
+        {
+            "name": "Enemy",
+            "id": "82c20835-39cc-4301-9f32-10b44fd2a4b9",
+            "actions": [
+                {
+                    "name": "DealDamage",
+                    "type": "Button",
+                    "id": "322cd9cf-a2f3-4c58-839a-0aa1eb2b065e",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "9d711ddd-164a-4522-aaeb-8740a0006bb1",
+                    "path": "<Keyboard>/f",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "DealDamage",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
